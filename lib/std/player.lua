@@ -1,9 +1,6 @@
-inherit = "/std/object"
+inherit = "/std/living"
 
-name = "Player"
-cap_name = "Player"
-title = "the Adventurer"
-client = nil -- Stores the client (socket info, input handler etc) object
+title = "the adventurer"
 
 __init = function(self)
 	parent.__init(self)
@@ -19,11 +16,13 @@ __init = function(self)
 	efun:add_action(self, 'act_who', {'who'})
 	efun:add_action(self, 'act_drop', {'drop'})
 	efun:add_action(self, 'act_inventory', {'inventory', 'i'})
-	efun:add_action(self, 'act_dump', {'dump'})
+	efun:add_action(self, 'act_set_title', {'title'})
 end
 
-function act_dump(self, ch, args)
-	efun:dump_objects()
+function act_set_title(self, ch, args)
+	self.title = args
+	send("Ok.\n")
+	return true
 end
 
 function short(self)

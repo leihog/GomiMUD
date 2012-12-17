@@ -11,7 +11,6 @@ Game = {}
 Game.port = 2000
 Game.name = "GomiMUD"
 Game.version = "v0.2"
-Game.player_object = "/std/player"
 
 ---
 -- Player objects, kept here for easy access.
@@ -41,6 +40,13 @@ end
 -- TODO not sure this is entirely safe... might be overwritten or point to wrong
 -- player, but seems to work for now.
 local this_player = nil
+
+---
+-- Should be true for players and NPCs
+--
+function is_living(obj)
+	return obj.__living or false
+end
 
 ---
 -- Sends str to the active player

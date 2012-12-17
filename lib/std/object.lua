@@ -8,11 +8,13 @@ short_desc = "A standard object"
 long_desc = "The standard object lacks a description"
 
 function __init(self)
-	dprint("Object __init called...")
-
+	-- We need to set these in __init since otherwise
+	-- all objects (including rooms) would share the same
+	-- actions and inventory. By setting them using self
+	-- we actually add the variables to the child instance and not
+	-- the class itself.
 	self.actions = {}
-	self.environment = nil
-	self.inventory = {}
+	self.inventory = {} -- TODO perhaps we should rethink letting all objects have inventories.
 end
 
 function id_as(self, str)

@@ -281,16 +281,16 @@ function efun:get_actions(obj)
 	return obj.actions
 end
 
---TODO this needs improvement, should also approve an object
---that has inherited from player... Perhaps this should be an lfun.
---
 function efun:is_player(obj)
-	local po = Game.player_object
-	if string.sub(obj.id, 0, string.len(po)) == po then
-		return true
+	if not obj.client or type(obj.client) ~= 'table' then
+		return false
 	end
 
-	return false
+	if not obj.client.socket or not obj.client.socket:getpeername() then
+		return false
+	end
+
+	return true
 end
 
 local is_shutdown_in_progress = false
