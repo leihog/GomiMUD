@@ -177,14 +177,6 @@ function Net:remove(socket)
 	self.sockets[socket] = nil -- that socket not in use now
 	client.socket = nil
 
-	-- Trigger player_disconnect()
-	--[[
-	if client.name then
-		--SaveCharacter(client.name)  -- save him  
-		chars[client.name] = nil
-		print(client.name, "has left the game")
-	end -- removing character too
-	--]]
 	print ("Removed client socket", socket)
 end
 
